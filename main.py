@@ -35,10 +35,11 @@ class SudokuGame:
         for i in range(9):
             for j in range(9):
                 if self.generated and self.puzzle[i][j] != 0:
-                    self.board[i][j].set(self.puzzle[i][j])
+                    self.entries[i][j].delete(0, tk.END)
+                    self.entries[i][j].insert(0, str(self.puzzle[i][j]))
                     self.entries[i][j].config(state="disabled")
                 else:
-                    self.board[i][j].set("")
+                    self.entries[i][j].delete(0, tk.END)
                     self.entries[i][j].config(state="normal")
     
     def play(self):
@@ -135,6 +136,13 @@ def remove_numbers(grid, difficulty=0.5):
 def main():
     root = tk.Tk()
     game = SudokuGame(root)
+    
+    for i in range(9):
+        for j in range(9):
+            game.entries[i][j] = tk.StringVar()
+            game.entries[i][j] = tk.Entry(game.board_frame, textvariable=game.entries[i][j], width=3)
+            game.entries[i][j].grid(row=i, column=j)
+    
     root.mainloop()
 
 if __name__ == "__main__":
