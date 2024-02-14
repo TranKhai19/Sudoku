@@ -1,5 +1,6 @@
 import tkinter as tk
 import random
+from tkinter import messagebox
 
 class SudokuGame:
     def __init__(self, root):
@@ -68,7 +69,7 @@ class SudokuGame:
                 self.entries[i][j].config(state="normal")
     
     def game_over(self):
-        tk.messagebox.showinfo("Congratulations", "You solved the puzzle!")
+        messagebox.showinfo("Congratulations", "You solved the puzzle!")
 
 def generate_sudoku():
     # Create an empty 9x9 grid
